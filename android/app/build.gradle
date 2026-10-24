@@ -1,0 +1,34 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.jang.kaunter'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.jang.kaunter'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+    // Kunci tetap (dari GitHub secret) supaya APK versi baru boleh pasang atas versi lama.
+    def ks = System.getenv('JANG_KEYSTORE_PATH')
+    signingConfigs {
+        tetap {
+            if (ks) {
+                storeFile file(ks)
+                storePassword System.getenv('JANG_KEYSTORE_PASS')
+                keyAlias 'jang'
+                keyPassword System.getenv('JANG_KEYSTORE_PASS')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig ks ? signingConfigs.tetap : signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
