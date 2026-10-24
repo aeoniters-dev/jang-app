@@ -29,8 +29,8 @@ jobs:
       - run: cp android/app/build/outputs/apk/release/app-release.apk JangKaunter.apk
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: apk-v1.0
-          name: Jang Kaunter APK v1.0
+          tag_name: apk-v1.1
+          name: Jang Kaunter APK v1.1
           body: "Muat turun JangKaunter.apk di tablet Android, buka fail, benarkan 'install dari sumber ini', Install."
           files: JangKaunter.apk
           make_latest: true

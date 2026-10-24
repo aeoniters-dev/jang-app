@@ -2,7 +2,9 @@ package com.jang.kaunter;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -10,7 +12,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-// Jang Kaunter APK V1.0: buka app kaunter (GitHub Pages) dalam WebView, kunci landscape, skrin tak padam.
+// Jang Kaunter APK V1.1: buka app kaunter (GitHub Pages) dalam WebView, kunci landscape, skrin tak padam,
+// skrin penuh (sorok bar status & butang navigasi; leret dari tepi untuk tunjuk sekejap).
 // Isi app update sendiri bila index.html di repo berubah (tak perlu APK baru).
 public class MainActivity extends Activity {
     private static final String URL = "https://aeoniters-dev.github.io/jang-app/";
@@ -21,6 +24,9 @@ public class MainActivity extends Activity {
         super.onCreate(b);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // skrin kaunter tak tidur
         getWindow().setStatusBarColor(Color.parseColor("#141210"));
+        if (Build.VERSION.SDK_INT >= 28) {   // guna kawasan takuk kamera juga
+            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+        }
         w = new WebView(this);
         w.setBackgroundColor(Color.parseColor("#F4EEE6"));
         setContentView(w);
@@ -41,6 +47,23 @@ public class MainActivity extends Activity {
             }
         });
         if (b != null) w.restoreState(b); else w.loadUrl(URL);
+        skrinPenuh();
+    }
+
+    private void skrinPenuh() {
+        getWindow().getDecorView().setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            | View.SYSTEM_UI_FLAG_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) skrinPenuh();   // sorok semula lepas papan kekunci / leret
     }
 
     @Override

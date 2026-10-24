@@ -6,8 +6,8 @@ android {
         applicationId 'com.jang.kaunter'
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName '1.0'
+        versionCode 2
+        versionName '1.1'
     }
     // Kunci tetap (dari GitHub secret) supaya APK versi baru boleh pasang atas versi lama.
     def ks = System.getenv('JANG_KEYSTORE_PATH')
