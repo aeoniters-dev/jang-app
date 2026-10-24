@@ -243,31 +243,32 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .calcside .btn-pay{min-width:0;padding:0 8px}
 @media (max-width:520px),(orientation:portrait) and (max-width:900px){.calcbody{grid-template-columns:1fr}}
 
-/* ===== SENARAI ORDER (checklist staff) ===== */
+/* ===== SENARAI ORDER (checklist staff) — skrin penuh, susun ke bawah, kotak besar ===== */
 .vtabs .chip.big[aria-pressed="true"]{background:var(--accent-strong);border-color:var(--accent-strong);color:#FFFFFF}
-.qcount{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin-left:6px;border-radius:999px;background:var(--caramel);color:#2A1C13;font-size:12px;font-weight:800}
-.qwrap{height:400px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,calc((100% - 3*12px)/3.3));gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.qcard{scroll-snap-align:start;min-height:0;background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
-.qcard.late{border-color:var(--warn)}
+.qcount{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 7px;margin-left:8px;border-radius:999px;background:var(--caramel);color:#2A1C13;font-size:13px;font-weight:800}
+.qwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));align-content:start;gap:14px;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.qcard{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.qcard.late{border-color:var(--warn);border-width:3px}
 .qcard.siap{opacity:.6}
 .qhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.qhead b{font-family:var(--display);font-size:20px;font-weight:800}
-.qhead span{font-size:13px;color:var(--muted);font-weight:600}
+.qhead b{font-family:var(--display);font-size:28px;font-weight:800}
+.qhead span{font-size:16px;color:var(--muted);font-weight:700}
 .qcard.late .qhead span{color:var(--warn)}
-.qlines{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
-.qline{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;background:var(--bg);text-align:left;font-size:15px}
-.qline .box{flex:0 0 auto;width:30px;height:30px;border-radius:8px;border:2px solid var(--muted);display:grid;place-items:center;font-weight:800;color:transparent}
-.qline .qq{font-family:var(--display);font-weight:800;font-size:20px;min-width:34px}
-.qline .nm{flex:1;min-width:0;font-weight:700}
+.qlines{display:flex;flex-direction:column;gap:8px}
+.qline{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;border:2px solid var(--line);border-radius:14px;padding:10px 14px;background:var(--bg);text-align:left;font-size:20px}
+.qline .box{flex:0 0 auto;width:44px;height:44px;border-radius:10px;border:3px solid var(--muted);display:grid;place-items:center;font-weight:800;font-size:24px;color:transparent}
+.qline .qq{font-family:var(--display);font-weight:800;font-size:28px;min-width:48px}
+.qline .nm{flex:1;min-width:0;font-weight:700;line-height:1.2}
 .qline[aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok)}
 .qline[aria-pressed="true"] .box{background:var(--ok);border-color:var(--ok);color:var(--surface)}
 .qline[aria-pressed="true"] .nm,.qline[aria-pressed="true"] .qq{text-decoration:line-through;color:var(--muted)}
-.qall{height:46px;border-radius:12px;border:0;background:var(--espresso);color:var(--on-espresso);font-weight:800;font-size:15px}
-.qundo{height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:13px}
-.qempty{grid-column:1/-1;align-self:center;justify-self:center;max-width:420px;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:18px;padding:28px 20px;font-size:15px}
-.qsep{align-self:center;writing-mode:vertical-rl;transform:rotate(180deg);color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.qall{height:60px;border-radius:14px;border:0;background:var(--espresso);color:var(--on-espresso);font-weight:800;font-size:19px}
+.qundo{height:48px;border-radius:14px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:15px}
+.qempty{grid-column:1/-1;justify-self:center;max-width:460px;text-align:center;color:var(--muted);border:2px dashed var(--line);border-radius:20px;padding:36px 24px;font-size:18px;margin-top:24px}
+.qsep{grid-column:1/-1;color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
 @media (orientation:landscape) and (min-height:460px){
-  .pos-mode .qwrap{flex:1;height:auto;min-height:0}
+  .pos-mode .qwrap{flex:1;min-height:0}
+  .pos-mode.q-mode #staff{grid-template-rows:minmax(0,1fr)}
   html.pos-mode,html.pos-mode body{height:100%}
   html.pos-mode body{overflow:hidden;padding-block:10px}
   .pos-mode .wrap{height:100%;max-width:none;gap:10px}
@@ -343,7 +344,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     <div class="brand-row"><svg class="logo" width="56" height="56" viewBox="0 0 200 200" role="img" aria-label="Logo Jang, Sip the Chill"><circle cx="100" cy="100" r="98" fill="#141210"/><g fill="none" stroke="#D4A64A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M116 48h38"/><path d="M120 48l3 24M150 48l-3 24"/><path d="M135 48l5-18 9-4"/></g><text x="100" y="122" text-anchor="middle" font-family="'Roboto Slab', Georgia, serif" font-weight="800" font-size="62" fill="#D4A64A">Jang</text><text x="100" y="152" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-weight="700" font-size="19" fill="#D4A64A">Sip the Chill</text></svg>
     <div class="brand">
       <h1>Jang</h1>
-      <small>Sip the Chill · v1.0.2 ujian · data belum online, stok &amp; resepi masih contoh</small>
+      <small>Sip the Chill · v1.0.3 ujian · data belum online, stok &amp; resepi masih contoh</small>
     </div></div>
     <div class="switch" role="group" aria-label="Pilih skrin">
       <button id="vStaff" aria-pressed="true">
@@ -558,6 +559,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
       '<button class="chip big" data-tab="order" aria-pressed="'+(S.tab==='order')+'">Order'+(pend?'<span class="qcount num">'+pend+'</span>':'')+'</button>';
     var isQ=S.tab==='order';
     $('catTabs').hidden=isQ;$('slideHint').hidden=isQ;$('menu').hidden=isQ;$('queue').hidden=!isQ;
+    document.documentElement.classList.toggle('q-mode',isQ&&S.step!=='rosak');
     if(isQ)renderQueue();
     $('catTabs').innerHTML=CATS.map(function(c){return '<button class="chip big" data-cat="'+c.id+'" aria-pressed="'+(S.cat===c.id)+'">'+c.name+'</button>'}).join('');
     $('menu').innerHTML=MENU.filter(function(m){return S.cat==='all'||m.cat===S.cat}).map(function(m){var q=S.cart[m.id]||0;
@@ -566,7 +568,7 @@ button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
     var tt=cartTotal(),cc=cartCups();
     $('nextbar').innerHTML='<div class="sum"><small>'+(cc?cc+' gelas dipilih':'Tekan minuman untuk pilih')+'</small><strong class="num">'+rm(tt)+'</strong></div>'+
       (cc?'<button class="btn-clr" id="clear2">Kosongkan</button>':'')+'<button class="btn-next" id="nextBtn"'+(cc?'':' disabled')+'>Next →</button>';
-    $('stepMenu').hidden=S.step==='rosak';$('stepPay').hidden=S.step==='rosak';$('stepRosak').hidden=S.step!=='rosak';
+    $('stepMenu').hidden=S.step==='rosak';$('stepPay').hidden=S.step==='rosak'||S.tab==='order';$('stepRosak').hidden=S.step!=='rosak';
     $('nextbar').hidden=true;
     document.documentElement.classList.toggle('pos-mode',S.view==='staff'&&S.step!=='rosak');
     if(S.step==='rosak')renderRosak();
